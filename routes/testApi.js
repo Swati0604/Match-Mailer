@@ -78,3 +78,4 @@ router.post('/sendemail', (req, res) => {
 
 module.exports = upload;
 module.exports = Storage;
+module.exports = router;

@@ -29,7 +29,7 @@ var upload = multer({
 }).single('file'); //Field name and max count
 
 router.get('/', (req, res, next) => {
-  res.sendFile('API is finally working');
+  res.send('API is finally working');
 });
 
 router.post('/sendemail', (req, res) => {

@@ -1,3 +1,12 @@
+var express = require('express');
+var router = express.Router();
+
+router.get('/', function (req, res, next) {
+  res.send('API is working properly');
+});
+
+module.exports = router;
+
 var nodemailer = require('nodemailer');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -7,12 +16,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-var to;
-var subject;
-var body;
+var from;
+var email;
+var phone;
+var linkdin;
+var PortFolio;
 var path;
 
 var Storage = multer.diskStorage({
+  /*/destination: function(req, file, callback) {
+        callback(null, "./pic");
+    },*/
   filename: function (req, file, callback) {
     callback(null, file.fieldname + '_' + Date.now() + '_' + file.originalname);
   },
@@ -38,13 +52,7 @@ app.post('/sendemail', (req, res) => {
       linkdin = req.body.LinkedIn;
       PortFolio = req.body.PortFolio;
       path = req.file.path;
-      console.log(from);
-      console.log(email);
-      console.log(phone);
-      console.log(linkdin);
-      console.log(PortFolio);
-      console.log(req.file);
-      console.log(req.files);
+
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -76,7 +84,5 @@ app.post('/sendemail', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log('server started');
-});
+module.exports = upload;
+module.exports = Storage;

@@ -6,6 +6,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(bodyParser.json());
+var router = express.Router();
 
 var from;
 var email;
@@ -27,11 +28,11 @@ var upload = multer({
   storage: Storage,
 }).single('file'); //Field name and max count
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
   res.sendFile(__dirname + '/src' + '/Form.js');
 });
 
-app.post('/sendemail', (req, res) => {
+router.post('/sendemail', (req, res) => {
   upload(req, res, function (err) {
     if (err) {
       console.log(err);

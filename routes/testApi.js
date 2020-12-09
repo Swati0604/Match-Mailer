@@ -28,8 +28,8 @@ var upload = multer({
   storage: Storage,
 }).single('file'); //Field name and max count
 
-router.get('/', (req, res) => {
-  res.sendFile(__dirname + '/src' + '/Form.js');
+router.get('/', (req, res, next) => {
+  res.sendFile('API is finally working');
 });
 
 router.post('/sendemail', (req, res) => {

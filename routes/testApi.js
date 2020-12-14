@@ -18,15 +18,15 @@ api.use('/public', express.static(path.join(__dirname, 'public')));
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 
-var Storage = multer.diskStorage({
-  filename: function (req, file, callback) {
-    callback(null, file.fieldname + '_' + Date.now() + '_' + file.originalname);
-  },
-});
+// var Storage = multer.diskStorage({
+//   filename: function (req, file, callback) {
+//     callback(null, file.fieldname + '_' + Date.now() + '_' + file.originalname);
+//   },
+// });
 
-var upload = multer({
-  storage: Storage,
-}).single('file');
+// var upload = multer({
+//   storage: Storage,
+// }).single('file');
 
 api.get('/', (req, res) => {
   res.send('contact');
@@ -44,7 +44,6 @@ api.post('/send', (req, res) => {
     <li>Name: ${req.body.name}</li>
     <li>Email: ${req.body.email}</li>
     <li>Phone: ${req.body.phone}</li>
-     <li>Resume: ${req.body.resume}</li>
   </ul>
   `;
 
@@ -52,7 +51,7 @@ api.post('/send', (req, res) => {
     service: 'gmail',
     auth: {
       user: 'jhaswati0604@gmail.com',
-      pass: 'ranjanajha',
+      pass: 'mumma@06',
     },
 
     tls: {

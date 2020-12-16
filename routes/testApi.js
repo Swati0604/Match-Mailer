@@ -34,25 +34,35 @@ api.get('/', (req, res) => {
 
 api.post('/send', (req, res) => {
   console.log(req.body);
-
+  upload(req,res,function(err){
   const email = req.body.email;
-
+ // const path = req.file.path
+ // console.log(path);`r`
   const output = `
-  <p>You have a new Contact Request</p> 
-  <h3>Contact Details</h3>
-  <ul>
-    <li>Name: ${req.body.name}</li>
-    <li>Email: ${req.body.email}</li>
-    <li>Phone: ${req.body.phone}</li>
-     <li>Resume: ${req.body.resume}</li>
-  </ul>
+  <p>Hie <span style={{font-weight:'bold'}}>${req.body.person},</span></p> 
+  <p>Hope you are doing great.</p>
+  <p>I came across this exciting opportunity available in your organiation. I am intrested in applying for the position of <span style={{font-weight:'bold'}}>UI/UX Designer at Myntra</span></span>. I feel my skiils and experience will be a valuable asset to your firm.
+  <br><br>I have attached my Resume & Portfolio link for your consideration. Please take a moment to go through them to get a better picture of who I am.
+  <br><br></p>
+  
+  <p><span style={{font-weight:'bold'}}>PortFolio:</span> ${req.body.portfolio}</p>
+  <p><span style={{font-weight:'bold'}}>LinkedIn:</span> ${req.body.linkedin}</p>
+
+  <p>I would love to talk to you regarding this amazing opportunity in your organization.</p>
+
+  <br>
+  <p>Thanks in advance,</p>
+    <p>${req.body.name}</p>
+    <p>${req.body.email}</p>
+    <p>${req.body.phone}</p>
+ 
   `;
 
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'jhaswati0604@gmail.com',
-      pass: 'ranjanajha',
+      user: 'rajdevanshueee@gmail.com',
+      pass: 'raJdevanshu1',
     },
 
     tls: {
@@ -61,10 +71,15 @@ api.post('/send', (req, res) => {
   });
 
   var mailOptions = {
-    from: 'jhaswati0604@gmail.com',
-    to: email,
+    from: email,
+    to: req.body.contact,
     subject: 'Hey',
     html: output,
+   /*  attachments: [
+       {
+       path: path
+       }
+    ]*/
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -74,6 +89,7 @@ api.post('/send', (req, res) => {
       console.log('Email sent: ' + info.response);
     }
   });
+})
 });
 
 console.log('Server Started...');

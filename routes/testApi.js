@@ -14,19 +14,19 @@ api.set('view-engines', 'handlebars');
 //Static Folder
 api.use('/public', express.static(path.join(__dirname, 'public')));
 
-//Body Parser Middlewaregi
+//Body Parser Middleware
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 
-// var Storage = multer.diskStorage({
-//   filename: function (req, file, callback) {
-//     callback(null, file.fieldname + '_' + Date.now() + '_' + file.originalname);
-//   },
-// });
+var Storage = multer.diskStorage({
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '_' + Date.now() + '_' + file.originalname);
+  },
+});
 
-// var upload = multer({
-//   storage: Storage,
-// }).single('file');
+var upload = multer({
+  storage: Storage,
+}).single('file');
 
 api.get('/', (req, res) => {
   res.send('contact');
@@ -39,7 +39,7 @@ api.post('/send', (req, res) => {
     // const path = req.file.path
     // console.log(path);`r`
     const output = `
-  <p>Hie <span style={{font-weight:'bold'}}>${req.body.person},</span></p> 
+  <p>Hi <span style={{font-weight:'bold'}}>${req.body.person},</span></p> 
   <p>Hope you are doing great.</p>
   <p>I came across this exciting opportunity available in your organiation. I am intrested in applying for the position of <span style={{font-weight:'bold'}}>UI/UX Designer at Myntra</span></span>. I feel my skiils and experience will be a valuable asset to your firm.
   <br><br>I have attached my Resume & Portfolio link for your consideration. Please take a moment to go through them to get a better picture of who I am.

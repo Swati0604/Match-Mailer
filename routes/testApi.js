@@ -61,8 +61,8 @@ api.post('/send', (req, res) => {
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rajdevanshueee@gmail.com',
-        pass: 'raJdevanshu1',
+        user: 'jhaswati0604@gmail.com',
+        pass: 'mumma@06',
       },
 
       tls: {

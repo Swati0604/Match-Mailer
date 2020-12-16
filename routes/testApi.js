@@ -14,7 +14,7 @@ api.set('view-engines', 'handlebars');
 //Static Folder
 api.use('/public', express.static(path.join(__dirname, 'public')));
 
-//Body Parser Middleware
+//Body Parser Middlewaregi
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 
